@@ -85,6 +85,7 @@ class QTrainer:
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
         # Mean Squared Error loss for measuring the difference between predicted and target Q-values
         self.criterion = nn.MSELoss()
+        self.losses = []  # To store the loss values
 
 
     def train_step(self, state, action, reward, next_state, done):
@@ -146,3 +147,6 @@ class QTrainer:
 
         # Step 4: Update the model parameters
         self.optimizer.step()
+        
+        self.losses.append(loss.item()) # Store the loss value for plotting
+        return loss.item()  # Return the loss for tracking

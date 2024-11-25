@@ -165,6 +165,7 @@ def train():
     
     plot_scores = []  # Scores for each game
     plot_mean_scores = []  # Mean scores over time
+    plot_losses = []  # List to store loss values
     total_score = 0
     record = 0  # Highest score achieved
     agent = Agent()
@@ -183,6 +184,9 @@ def train():
 
         # train short memory (Train the model with the latest experience)
         agent.train_short_memory(state_old, final_move, reward, state_new, done)
+        
+        # Track loss
+        loss = agent.trainer.train_step(state_old, final_move, reward, state_new, done)
 
         # Store the experience in memory (remember)
         agent.remember(state_old, final_move, reward, state_new, done)
@@ -205,7 +209,8 @@ def train():
             total_score += score
             mean_score = total_score / agent.n_games
             plot_mean_scores.append(mean_score)
-            plot(plot_scores, plot_mean_scores)
+            plot_losses.append(loss)  # Add the loss to the list
+            plot(plot_scores, plot_mean_scores, plot_losses)  # Pass losses to the plot
 
 
 if __name__ == '__main__':
