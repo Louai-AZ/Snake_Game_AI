@@ -26,8 +26,8 @@ This project implements an AI agent to play the classic Snake game using Reinfor
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Louai-AZ/Reinforcement_Learning.git
-    cd Reinforcement_Learning
+    git clone https://github.com/Louai-AZ/Snake_Game_AI.git
+    cd Snake_Game_AI
     ```
 
 2. Create an environment and install the dependencies:
